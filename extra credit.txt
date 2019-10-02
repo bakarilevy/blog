@@ -1,0 +1,4 @@
+1. Make it attractive (use bootstrap).
+2. Make it responsive (use bootstrap).
+3. Make it RESTful API (use SpringBoot) consumed by an Agular front end.
+4. Use a security framework (if you have time).
