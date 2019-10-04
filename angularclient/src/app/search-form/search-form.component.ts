@@ -9,7 +9,6 @@ import { Search } from '../search';
 export class SearchFormComponent implements OnInit {
 
    search: Search;
-   data: string;
 
   constructor(private postService : PostService) {
   
@@ -19,7 +18,7 @@ export class SearchFormComponent implements OnInit {
   //Now this form needs to display the results on this page...
 
   onSubmit(){
-    this.data = "Test";
+    
     this.postService.searchPost(this.search.getQuery())
   }
 
