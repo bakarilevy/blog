@@ -8,13 +8,15 @@ import { PostListComponent } from './post-list/post-list.component';
 import { PostFormComponent } from './post-form/post-form.component';
 import { PostService } from '../app/post.service';
 import { EditFormComponent } from './edit-form/edit-form.component';
+import { SearchFormComponent } from './search-form/search-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostListComponent,
     PostFormComponent,
-    EditFormComponent
+    EditFormComponent,
+    SearchFormComponent
   ],
   imports: [
     BrowserModule,
