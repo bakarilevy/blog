@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { PostService } from '../post.service';
+import { Search } from '../search';
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
@@ -7,7 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchFormComponent implements OnInit {
 
-  constructor() { }
+   search: Search;
+   data: string;
+
+  constructor(private postService : PostService) {
+  
+    this.search = new Search();
+   }
+
+  //Now this form needs to display the results on this page...
+
+  onSubmit(){
+    this.data = "Test";
+    this.postService.searchPost(this.search.getQuery())
+  }
 
   ngOnInit() {
   }

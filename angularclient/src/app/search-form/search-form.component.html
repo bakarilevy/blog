@@ -1,1 +1,12 @@
-<p>search-form works!</p>
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+        <div class="form-group">
+          <label for="query">Search Query</label>
+          <input type="text"  [(ngModel)]="search.query" 
+            class="form-control" id="query" name="query" placeholder="Please enter a title to search"
+            required #query="ngModel">
+        </div>
+        <div [hidden]="!query.pristine" class="alert alert-danger">You must enter a search term!</div>
+        <button type="submit" [disabled]="!searchForm.form.valid" class="btn btn-info">Submit</button>
+      

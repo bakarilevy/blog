@@ -39,7 +39,7 @@ public class BlogController {
 	@PostMapping("/blog/search")
 	public List<Post> search(@RequestBody Map<String, String> body) {
 		String searchTerm = body.get("title");
-		return blogRepository.findByTitleContainingOrContentContaining(searchTerm, searchTerm);
+		return blogRepository.findAllByTitle(searchTerm);
 	}
 	
 	@PostMapping("/blog")

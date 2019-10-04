@@ -9,6 +9,7 @@ import { PostFormComponent } from './post-form/post-form.component';
 import { PostService } from '../app/post.service';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { SearchFormComponent } from './search-form/search-form.component';
+import { PostDetailsComponent } from './post-details/post-details.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SearchFormComponent } from './search-form/search-form.component';
     PostListComponent,
     PostFormComponent,
     EditFormComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    PostDetailsComponent
   ],
   imports: [
     BrowserModule,

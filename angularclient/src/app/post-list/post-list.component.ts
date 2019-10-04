@@ -32,6 +32,11 @@ export class PostListComponent implements OnInit {
 
   }
 
+  detailsOfPost(post: Post) {
+    this.postService.setPost(post);
+    //Need to let the postService give this to the details component
+  }
+
   redirectToEdit() {
     //Takes the person to the edit form page
     this.router.navigate(['/editPost']);

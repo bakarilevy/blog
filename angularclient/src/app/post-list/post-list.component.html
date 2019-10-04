@@ -8,6 +8,7 @@
             <th scope="col">Content</th>
             <th scope="col">Delete</th>
             <th scope="col">Edit</th>
+            <th scope="col">Details</th>
           </tr>
         </thead>
         <tbody>
@@ -17,6 +18,7 @@
             <td>{{ post.content }}</td>
             <td> <button [routerLink]="['/blog', post.id]" class="btn btn-danger" name='{{ post.id }}' (click)="delPost(post.id)" >Delete</button> </td>
             <td> <button [routerLink]="['/editPost']" class="btn btn-warning" name='{{ post.id }}' (click)="editPost(post)" >Edit</button> </td>
+            <td> <button [routerLink]="['/details', post.id]" class="btn btn-info" name='{{ post.id }}' (click)="detailsOfPost(post)" >Details</button> </td>
           </tr>
         </tbody>
       </table>
