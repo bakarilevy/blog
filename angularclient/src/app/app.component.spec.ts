@@ -23,7 +23,7 @@ describe('AppComponent', () => {
   it(`should have as title 'angularclient'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('angularclient');
+    expect(app.title).toEqual('Blog: MySQL, Spring, Angular');
   });
 
   it('should render title', () => {

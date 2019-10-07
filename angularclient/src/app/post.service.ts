@@ -15,7 +15,7 @@ export class PostService {
   private id: number;
   private post: Post;
   private editedPost = new Post;
-  private searchResponse: Promise<JSON>;
+  private searchResults: Post[];
 
   getId(){
     return this.id;
@@ -23,7 +23,6 @@ export class PostService {
 
   setId(id){
     this.id = id;
-    console.log(id);
   }
 
   getPost(){
@@ -34,8 +33,8 @@ export class PostService {
     this.post = post;
   }
 
-  getSearchResponse(){
-    return this.searchResponse;
+  getSearchResults(){
+    return this.searchResults;
   }
 
   constructor(private http: HttpClient, activatedRoute: ActivatedRoute, router: Router) {
@@ -59,15 +58,11 @@ export class PostService {
   }
 
   public searchPost(query: String){
-   
-    let h1 = new Headers();
-    h1.append('content-type', 'Application/Json');
-    var requestOptions = new requestOptions();
-    requestOptions.Headers = h1;
-
+   const options = { headers: new HttpHeaders().set('Content-Type', 'application/json') };
     let url = this.postsUrl + "/search";
-
-    return this.http.post(url, JSON.stringify(query), requestOptions).pipe(map(data => {} )).subscribe(result => (response: Response) => this.searchResponse = response.json());
+    let sendThis = { title: query };
+    let request = this.http.post<Post[]>(url, sendThis, options); 
+  return request.subscribe(result =>  this.searchResults =  result);
   }
 
   public convertSearchResults() {

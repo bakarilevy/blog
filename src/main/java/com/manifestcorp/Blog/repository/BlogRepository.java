@@ -18,6 +18,6 @@ public interface BlogRepository extends JpaRepository<Post, Integer> {
 	@Query("select p from Post p where p.title = :title or p.content = :content")
 	Post findByTitleOrContent(@Param("title") String title, @Param("content") String content);
 	
-	@Query("select p from Post p where p.title = :title")
+	@Query("select p from Post p where title like %:title%")
 	List<Post> findAllByTitle(@Param("title") String title);
 }
