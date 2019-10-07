@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../post.service';
 import { Search } from '../search';
 import { Post } from '../post';
+
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
@@ -21,11 +22,10 @@ export class SearchFormComponent implements OnInit {
     this.postService.setPost(post);
   }
 
-  onSubmit(){
-    
-    this.postService.searchPost(this.search.getQuery());
-    this.searchResults = this.postService.getSearchResults();
+  onSearch(){
+    this.postService.searchPost(this.search.getQuery()).subscribe(data => {this.searchResults = data});
   }
+
 
   ngOnInit() {
   }

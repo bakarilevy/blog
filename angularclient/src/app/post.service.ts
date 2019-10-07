@@ -62,7 +62,7 @@ export class PostService {
     let url = this.postsUrl + "/search";
     let sendThis = { title: query };
     let request = this.http.post<Post[]>(url, sendThis, options); 
-  return request.subscribe(result =>  this.searchResults =  result);
+    return request;
   }
 
   public convertSearchResults() {

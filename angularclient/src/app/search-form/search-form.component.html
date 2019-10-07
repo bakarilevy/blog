@@ -1,6 +1,6 @@
 <div class="card my-5">
     <div class="card-body">
-      <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+      <form (ngSubmit)="onSearch()" #searchForm="ngForm">
         <div class="form-group">
           <label for="query">Search Query</label>
           <input type="text"  [(ngModel)]="search.query" 
@@ -8,10 +8,13 @@
             required #query="ngModel">
         </div>
         <div [hidden]="!query.pristine" class="alert alert-danger">You must enter a search term!</div>
-        <button type="submit" [disabled]="!searchForm.form.valid" class="btn btn-info">Submit</button>
-      
+        <button type="submit" [disabled]="!searchForm.form.valid" class="btn btn-info">Search</button>
+    </form>
+
         <tr *ngFor="let result of searchResults">
           <td>{{ result.title }}</td>
           <td>{{ result.content }}</td>
           <td> <button [routerLink]="['/details', result.id]" class="btn btn-info" name='{{ result.id }}' (click)="detailsOfPost(result)" >Details</button> </td>
         </tr>
+
+    </div>
