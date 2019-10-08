@@ -1,5 +1,7 @@
 package com.manifestcorp.Blog.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,12 +19,19 @@ public class Post {
 	private int id;
 	private String title;
 	private String content;
+	private List<Comment> comments;
 	
 	public Post() {}
 	
 	public Post( @JsonProperty("title") String title, @JsonProperty("content") String content) {
 		this.title = title;
 		this.content = content;
+	}
+	
+	public Post( @JsonProperty("title") String title, @JsonProperty("content") String content, @JsonProperty("comments") List<Comment> comments) {
+		this.title = title;
+		this.content = content;
+		this.comments = comments;
 	}
 
 	public int getId() {
@@ -56,6 +65,14 @@ public class Post {
             ", title='" + title + '\'' +
             ", content='" + content + '\'' +
             '}';
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 	
