@@ -15,7 +15,6 @@ export class PostService {
   private id: number;
   private post: Post;
   private editedPost = new Post;
-  private searchResults: Post[];
 
   getId(){
     return this.id;
@@ -33,9 +32,6 @@ export class PostService {
     this.post = post;
   }
 
-  getSearchResults(){
-    return this.searchResults;
-  }
 
   constructor(private http: HttpClient, activatedRoute: ActivatedRoute, router: Router) {
     this.postsUrl = 'http://localhost:8080/blog';
