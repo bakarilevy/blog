@@ -46,11 +46,11 @@ public class Post extends BaseEntity {
 		this.title = title;
 	}
 
-	public List<Comment> getComments() {
+	public List getComments() {
 		return comments;
 	}
 
-	public void setComments(List<Comment> comments) {
+	public void setComments(List comments) {
 		this.comments = comments;
 	}
 
