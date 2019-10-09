@@ -1,25 +1,35 @@
 package com.manifestcorp.Blog.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
+@Entity(name = "Post")
+@Table(name = "post")
 
-public class Post {
+public class Post extends BaseEntity {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	
-	private int id;
 	private String title;
+	
+	//The One to many here is referring to the list of comments below.
+	@OneToMany(
+		mappedBy = "post",
+		cascade = CascadeType.ALL,
+		orphanRemoval = true
+			)
+	
+	private List<Comment> comments = new ArrayList<Comment>();
+	
 	private String content;
-	private List<Comment> comments;
+
 	
 	public Post() {}
 	
@@ -28,26 +38,20 @@ public class Post {
 		this.content = content;
 	}
 	
-	public Post( @JsonProperty("title") String title, @JsonProperty("content") String content, @JsonProperty("comments") List<Comment> comments) {
-		this.title = title;
-		this.content = content;
-		this.comments = comments;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getTitle() {
 		return title;
 	}
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public String getContent() {
@@ -58,23 +62,9 @@ public class Post {
 		this.content = content;
 	}
 	
-	@Override
-	public String toString() {
-		return "Post{" +
-            "id=" + id +
-            ", title='" + title + '\'' +
-            ", content='" + content + '\'' +
-            '}';
+	public void addComment(Comment comment) {
+		comments.add(comment);
+		comment.setPost(this);
 	}
-
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-	
-	
 	
 }

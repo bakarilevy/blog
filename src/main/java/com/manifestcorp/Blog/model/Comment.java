@@ -1,34 +1,35 @@
 package com.manifestcorp.Blog.model;
 
-public class Comment {
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity(name = "Comment")
+@Table(name = "comment")
+
+public class Comment extends BaseEntity {
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Post post;
 	
-	private String author;
-	private String content;
-	
-	public Comment() {}
-	
-	public Comment(String author, String content) {
-		
-		this.author = author;
-	
-		this.content = content;
+	public Post getPost() {
+		return post;
 	}
 
-	public String getAuthor() {
-		return author;
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public String getReview() {
+		return review;
 	}
 
-	public String getContent() {
-		return content;
+	public void setReview(String review) {
+		this.review = review;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+	private String review;
 	
 	
 }
