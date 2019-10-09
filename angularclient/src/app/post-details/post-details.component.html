@@ -1,2 +1,28 @@
 <h1> {{ post.title }} </h1>
 <p>{{ post.content }}</p>
+
+<form (ngSubmit)="onSubmit()" #postDetails="ngForm">
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text"  [(ngModel)]="comment.author" 
+            class="form-control" id="author" name="author" placeholder="Please enter your name"
+            required #author="ngModel">
+        </div>
+        <div [hidden]="!author.pristine" class="alert alert-danger">You must enter a name!</div>
+
+        <div class="form-group">
+                <label for="review">Review</label>
+                <input type="text"  [(ngModel)]="comment.review" 
+                  class="form-control" id="review" name="review" placeholder="Please enter your review"
+                  required #review="ngModel">
+              </div>
+              <div [hidden]="!review.pristine" class="alert alert-danger">You must enter a comment!</div>
+              <button type="submit" [disabled]="!postDetails.form.valid" class="btn btn-info">Submit</button>
+</form>
+
+<ul *ngFor="let comment of comments" >
+        <li> {{ comment.author }} </li>
+        <li> {{ comment.review }} </li>
+</ul>
+    
+    

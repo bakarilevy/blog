@@ -1,8 +1,10 @@
+import { Comment } from '../app/comment';
 export class Post {
 
     id: number;
     title: String;
     content: String;
+    comments: Comment[];
 
     getId() {
         return this.id;
@@ -16,6 +18,10 @@ export class Post {
         return this.content;
     }
 
+    getComments() {
+        return this.comments;
+    }
+
     setId(id: number){
          this.id = id;
     }
@@ -26,6 +32,10 @@ export class Post {
 
     setContent(content: String) {
         this.content = content;
+    }
+
+    setComments(comments: Comment[]) {
+        this.comments = comments;
     }
 
 }

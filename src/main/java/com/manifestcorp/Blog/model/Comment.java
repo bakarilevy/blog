@@ -12,6 +12,8 @@ public class Comment extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Post post;
+	private String author;
+	private String review;
 	
 	public Post getPost() {
 		return post;
@@ -29,7 +31,14 @@ public class Comment extends BaseEntity {
 		this.review = review;
 	}
 
-	private String review;
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
 	
 	
 }
