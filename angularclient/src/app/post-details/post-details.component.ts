@@ -25,10 +25,10 @@ export class PostDetailsComponent implements OnInit {
   postId: string;
   constructor(private postService: PostService, private route: ActivatedRoute) {
     this.comment = new Comment();
-   // let test = new Comment;
-   // test.setAuthor('Foo');
-   // test.setReview('Bar');
-   // this.comments = [test];
+    // let test = new Comment;
+    // test.setAuthor('Foo');
+    // test.setReview('Bar');
+    // this.comments = [test];
    }
 
   onSubmit() {
@@ -47,13 +47,15 @@ export class PostDetailsComponent implements OnInit {
     //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
     //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
     //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
-    this.comments = this.post.getComments();
+    
   }
 
   ngOnInit() {
     this.postId = this.route.snapshot.paramMap.get('id');
-    this.postService.getPostOnLoad(this.postId).subscribe(data => this.post = data); 
-    this.comments = this.post.comments;
+    this.postService.getPostOnLoad(this.postId).subscribe(data => {
+      this.post = data;
+      this.comments = this.post.comments;
+    } ); 
   }
 
 
