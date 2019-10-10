@@ -1,13 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostService } from '../post.service';
 import { Post } from '../post';
+import { FormsModule }   from '@angular/forms';
 
 @Component({
   selector: 'app-post-form',
   templateUrl: './post-form.component.html',
   styleUrls: ['./post-form.component.css']
 })
+
+@NgModule({
+  imports: [
+    FormsModule
+  ]
+})
+
 export class PostFormComponent implements OnInit {
 
   post: Post;

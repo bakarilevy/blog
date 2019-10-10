@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { Post } from '../post';
 import { PostService } from '../post.service';
 import { Router } from '@angular/router';
-
+import { FormsModule }   from '@angular/forms';
 
 
 @Component({
@@ -10,6 +10,13 @@ import { Router } from '@angular/router';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
+
+@NgModule({
+  imports: [
+    FormsModule
+  ]
+})
+
 export class PostListComponent implements OnInit {
 
   posts: Post[];
