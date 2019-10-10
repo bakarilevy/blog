@@ -5,6 +5,8 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity(name = "Comment")
 @Table(name = "comment")
 
@@ -14,6 +16,7 @@ public class Comment extends BaseEntity {
 	private Post post;
 	private String author;
 	private String review;
+	@JsonBackReference(value = "postToComments")
 	
 	public Post getPost() {
 		return post;

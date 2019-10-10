@@ -4,7 +4,7 @@ import { Post } from '../app/post';
 import { Observable, fromEventPattern } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
-
+import { Comment } from '../app/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class PostService {
 
   private postsUrl: string;
+  private commentEndpoint: string;
   private id: number;
   private post: Post;
   private editedPost = new Post;
@@ -35,6 +36,7 @@ export class PostService {
 
   constructor(private http: HttpClient, activatedRoute: ActivatedRoute, router: Router) {
     this.postsUrl = 'http://localhost:8080/blog';
+    this.commentEndpoint = 'http://localhost:8080/comment/';
    }
 
    public findAll(): Observable<Post[]> {
@@ -51,6 +53,16 @@ export class PostService {
 
   public deletePost() {
     return this.http.delete<Post>(this.postsUrl + "/" + this.id);
+  }
+
+  public getPostOnLoad(postId: String) {
+    return this.http.get<Post>(this.postsUrl + "/" + postId);
+  }
+
+  public sendComment(id: string, comment: Comment) {
+    console.log("in service");
+    console.log(id);
+    return this.http.put<Comment>(this.commentEndpoint + id, comment);
   }
 
   public searchPost(query: String){

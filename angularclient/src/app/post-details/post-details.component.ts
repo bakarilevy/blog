@@ -2,7 +2,8 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { Post } from '../post';
 import { PostService } from '../post.service';
 import { Comment } from '../comment';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -21,20 +22,39 @@ export class PostDetailsComponent implements OnInit {
   post: Post;
   comments: Comment[];
   comment: Comment;
-  constructor(private postService: PostService) {
+  postId: string;
+  constructor(private postService: PostService, private route: ActivatedRoute) {
     this.comment = new Comment();
+   // let test = new Comment;
+   // test.setAuthor('Foo');
+   // test.setReview('Bar');
+   // this.comments = [test];
    }
 
   onSubmit() {
-
-    //Need to send this across to the back end as well as make this work far more elegantly
-    this.comments.push(this.comment);
-    this.post.comments = this.comments;
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    this.postService.sendComment(this.postId, this.comment).subscribe();
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
+    this.comments = this.post.getComments();
   }
 
   ngOnInit() {
-    this.post = this.postService.getPost();
+    this.postId = this.route.snapshot.paramMap.get('id');
+    this.postService.getPostOnLoad(this.postId).subscribe(data => this.post = data); 
     this.comments = this.post.comments;
   }
+
 
 }

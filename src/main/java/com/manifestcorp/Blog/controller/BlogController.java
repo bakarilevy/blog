@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.manifestcorp.Blog.model.Comment;
 import com.manifestcorp.Blog.model.Post;
 import com.manifestcorp.Blog.repository.BlogRepository;
 
@@ -47,6 +48,20 @@ public class BlogController {
 		String title = body.get("title");
 		String content = body.get("content");
 		blogRepository.save(new Post(title, content));
+	}
+	
+	@PutMapping("/comment/{grabId}")
+	public void newComment(@PathVariable String grabId, @RequestBody Map<String, String> body) {
+		System.out.println("I got hit!");
+		int id = Integer.parseInt(grabId);
+		Post post = blogRepository.findById(id).get();
+		Comment comment = new Comment();
+		String author = body.get("author");
+		String review = body.get("review");
+		comment.setAuthor(author);
+		comment.setReview(review);
+		post.addComment(comment);
+		blogRepository.save(post);
 	}
 	
 	@PutMapping("/blog/{id}")

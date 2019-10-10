@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity(name = "Post")
@@ -25,6 +26,7 @@ public class Post extends BaseEntity {
 		cascade = CascadeType.ALL,
 		orphanRemoval = true
 			)
+	@JsonManagedReference(value = "postToComments")
 	
 	private List<Comment> comments = new ArrayList<Comment>();
 	
