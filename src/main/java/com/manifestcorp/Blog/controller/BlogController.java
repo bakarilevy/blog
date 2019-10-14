@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.manifestcorp.Blog.model.Comment;
 import com.manifestcorp.Blog.model.Post;
 import com.manifestcorp.Blog.repository.BlogRepository;
+import com.manifestcorp.Blog.service.BlogService;
 
 @RestController
 @CrossOrigin(origins= "http://localhost:4200")
@@ -24,6 +25,8 @@ public class BlogController {
 	
 	@Autowired
 	BlogRepository blogRepository;
+	@Autowired
+	BlogService blogService;
 	
 
 	@RequestMapping("/blog")
@@ -52,7 +55,6 @@ public class BlogController {
 	
 	@PutMapping("/comment/{grabId}")
 	public void newComment(@PathVariable String grabId, @RequestBody Map<String, String> body) {
-		System.out.println("I got hit!");
 		int id = Integer.parseInt(grabId);
 		Post post = blogRepository.findById(id).get();
 		Comment comment = new Comment();
