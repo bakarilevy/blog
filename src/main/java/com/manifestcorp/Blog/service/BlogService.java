@@ -34,27 +34,33 @@ public class BlogService {
 		return results;
 	}
 	
-	public void save(String title, String content) {
+	public void save(Map<String, String> body) {
+		String title = body.get("title");
+		String content = body.get("content");
 		Post newPost = new Post();
 		newPost.setTitle(title);
 		newPost.setContent(content);
 		blogRepository.save(newPost);
 	}
 	
-	public void newComment(String searchId, String author, String review) {
+	public void newComment(String searchId, Map<String, String> body) {
 		int id = Integer.parseInt(searchId);
 		Post post = blogRepository.findById(id).get();
 		Comment comment = new Comment();
+		String author = body.get("author");
 		comment.setAuthor(author);
+		String review = body.get("review");
 		comment.setReview(review);
 		post.addComment(comment);
 		blogRepository.save(post);
 	}
 	
-	public void update(String postId, String title, String content) {
+	public void update(String postId, Map<String, String> body) {
 		int id = Integer.parseInt(postId);
 		Post post = blogRepository.findById(id).get();
+		String title = body.get("title");
 		post.setTitle(title);
+		String content = body.get("content");
 		post.setContent(content);
 		blogRepository.save(post);
 	}

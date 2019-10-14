@@ -36,49 +36,32 @@ public class BlogController {
 	
 	@GetMapping("/blog/{id}")
 	public Post show(@PathVariable String id) {
-		int postId = Integer.parseInt(id);
-		return blogRepository.findById(postId).get();
+		return blogService.findOne(id);
 	}
 	
 	@PostMapping("/blog/search")
 	public List<Post> search(@RequestBody Map<String, String> body) {
 		String searchTerm = body.get("title");
-		return blogRepository.findAllByTitle(searchTerm);
+		return blogService.search(searchTerm);
 	}
 	
 	@PostMapping("/blog")
 	public void create(@RequestBody Map<String, String> body) {
-		String title = body.get("title");
-		String content = body.get("content");
-		blogRepository.save(new Post(title, content));
+		blogService.save(body);
 	}
 	
 	@PutMapping("/comment/{grabId}")
 	public void newComment(@PathVariable String grabId, @RequestBody Map<String, String> body) {
-		int id = Integer.parseInt(grabId);
-		Post post = blogRepository.findById(id).get();
-		Comment comment = new Comment();
-		String author = body.get("author");
-		String review = body.get("review");
-		comment.setAuthor(author);
-		comment.setReview(review);
-		post.addComment(comment);
-		blogRepository.save(post);
+		blogService.newComment(grabId, body);
 	}
 	
 	@PutMapping("/blog/{id}")
 	public void update(@PathVariable String id, @RequestBody Map<String, String> body) {
-		int postId = Integer.parseInt(id);
-		//Getting blog post
-		Post post = blogRepository.findById(postId).get();
-		post.setTitle(body.get("title"));
-		post.setContent(body.get("content"));
-		blogRepository.save(post);
+		blogService.update(id, body);
 	}
-	
+		
 	@DeleteMapping("/blog/{id}")
 	public void delete(@PathVariable String id) {
-		int postId = Integer.parseInt(id);
-		blogRepository.deleteById(postId);
+		blogService.delete(id);
 	}
 }

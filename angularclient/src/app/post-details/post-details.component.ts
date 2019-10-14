@@ -3,7 +3,7 @@ import { Post } from '../post';
 import { PostService } from '../post.service';
 import { Comment } from '../comment';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class PostDetailsComponent implements OnInit {
   comments: Comment[];
   comment: Comment;
   postId: string;
-  constructor(private postService: PostService, private route: ActivatedRoute) {
+  constructor(private postService: PostService, private route: ActivatedRoute, private router: Router ) {
     this.comment = new Comment();
     // let test = new Comment;
     // test.setAuthor('Foo');
@@ -39,7 +39,9 @@ export class PostDetailsComponent implements OnInit {
     //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
     //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
     //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
-    this.postService.sendComment(this.postId, this.comment).subscribe();
+    this.postService.sendComment(this.postId, this.comment).subscribe(result => {
+      window.location.reload();
+    });
     //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
     //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
     //ALWAYS SUBSCRIBE! EVERY TIME YOU MAKE AN HTTP REQUEST!!!
