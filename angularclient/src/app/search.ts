@@ -2,11 +2,11 @@ export class Search {
 
     query: String;
     
-    getQuery() {
+    getQuery():String {
         return this.query;
     }
 
-    setQuery() {
-        return this.query;
+    setQuery(query: String) {
+     this.query = query;
     }
 }

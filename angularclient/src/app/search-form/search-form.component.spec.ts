@@ -4,7 +4,7 @@ import { SearchFormComponent } from './search-form.component';
 import { PostService } from '../post.service';
 import { Post } from '../post';
 import { RouterTestingModule } from '@angular/router/testing';
-import { Routes, ActivatedRoute } from '@angular/router';
+import { Routes, ActivatedRoute, Params } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -48,8 +48,10 @@ describe('SearchFormComponent', () => {
   });
 
   it('should search for something', () => {
-    component.onSearch;
-    expect(fakeHttpClient).toHaveBeenCalled;
+    //I need to access the SF Components' private search object
+    let myParams = {query: 'Yay!'} as Params;
+    component.onSearch();
+   spyOn
   });
 
 });

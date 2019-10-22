@@ -18,8 +18,6 @@ export class EditFormComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, private postService: PostService ) { }
 
-//Maybe put the template coments into the edit form component!
-
   onSubmit() {
     //Need to find a way to pass in contents of the form into the function
     this.postService.editPost(this.titleValue, this.contentValue).subscribe(result => this.goToPostList());

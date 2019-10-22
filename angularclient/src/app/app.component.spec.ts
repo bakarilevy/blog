@@ -8,6 +8,7 @@ import { PostFormComponent } from '../app/post-form/post-form.component';
 import { EditFormComponent } from '../app/edit-form/edit-form.component';
 import { SearchFormComponent } from '../app/search-form/search-form.component';
 import { PostDetailsComponent } from '../app/post-details/post-details.component';
+import { FormsModule } from '@angular/forms';
 
 
 describe('AppComponent', () => {
@@ -25,7 +26,8 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        FormsModule
       ],
       declarations: [
         AppComponent,

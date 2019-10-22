@@ -1,55 +1,48 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, ComponentFixture, TestBed, getTestBed } from '@angular/core/testing';
 import { PostService } from './post.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { Post } from './post';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
 
 describe('PostService', () => {
   //Test this service
+
   let service: PostService;
-  let fixture: ComponentFixture<PostService>;
+  let httpMock: HttpTestingController;
   let post: Post = new Post;
-  const fakeRouter = {
-    request: 'Some Other Page'
-  };
-  const fakeHttpClient = {
-    get: 'someUrl'
-  }
+  
+
   
   beforeEach(async(() => {
   
     TestBed.configureTestingModule({
-    declarations: [ PostService ],
     imports: [
-      HttpClientTestingModule,
-      RouterTestingModule,
-      FormsModule
+      HttpClientTestingModule
     ],
     providers: [
-      {PostService},
-      {provide: RouterTestingModule, useValue: fakeRouter },
-      {provide: HttpClientTestingModule, useValue: fakeHttpClient }
+      PostService
     ]
   })
   .compileComponents();
-}));
+  }));
+  
+
 
 beforeEach(() => {
-  fixture = TestBed.createComponent(PostService);
-  service = fixture.componentInstance;
-  fixture.detectChanges();
-});
+  service = TestBed.get(PostService);
+})
 
-  beforeEach(() => TestBed.configureTestingModule({}));
+
+  //beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PostService = TestBed.get(PostService);
+    
     expect(service).toBeTruthy();
   });
 
   it('Post should not be null', () => {
-    const service: PostService = TestBed.get(PostService);
     post.setTitle("foo");
     post.setContent("bar");
     service.setPost(post)

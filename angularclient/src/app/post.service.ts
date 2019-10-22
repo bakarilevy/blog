@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../app/post';
-import { Observable, fromEventPattern } from 'rxjs';
-import { map } from 'rxjs/operators';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Observable } from 'rxjs';
 import { Comment } from '../app/comment';
 
 @Injectable({
@@ -34,7 +32,7 @@ export class PostService {
   }
 
 
-  constructor(private http: HttpClient, activatedRoute: ActivatedRoute, router: Router) {
+  constructor(private http: HttpClient) {
     this.postsUrl = 'http://localhost:8080/blog';
     this.commentEndpoint = 'http://localhost:8080/comment/';
    }
